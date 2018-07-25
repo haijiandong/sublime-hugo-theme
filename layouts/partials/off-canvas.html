@@ -5,51 +5,54 @@
     <div class="bio">
         {{ with .Site.Params.offcanvas.title }}
         <h1>{{ . }}</h1>
-        {{ end }}
-        {{ with .Site.Params.offcanvas.bio }}
+        {{ end }} {{ with .Site.Params.offcanvas.bio }}
         <p>{{ . | markdownify }}</p>
-        {{ end }}
-        {{ with .Site.Params.offcanvas.bio2 }}
+        {{ end }} {{ with .Site.Params.offcanvas.bio2 }}
         <p class="bio2">{{ . | markdownify }}</p>
         {{ end }}
     </div>
     <nav>
 
-        {{ if .Site.Params.offcanvas.search_enabled }}
+        {{ if .Site.Params.offcanvas.search_enabled }} {{ with .Site.Params.offcanvas.search }}
+        <h6>{{ . }}</h6>
+        {{ end }}
 
-            {{ with .Site.Params.offcanvas.search }}
-            <h6>{{ . }}</h6>
-            {{ end }}
+        <div>
+            <form name="google-search" method="get" action="http://www.google.com/search" target="_blank">
+                <input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}" />
+                <input class="search-input" name="q" type="text" required />
+                <input class="search-submit" type="submit" name="sa" value="Search" />
+            </form>
+        </div>
 
-            <div>
-                <form name="google-search" method="get" action="http://www.google.com/search" target="_blank">
-                    <input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}" />
-                    <input class="search-input" name="q" type="text" required />
-                    <input class="search-submit" type="submit" name="sa" value="Search" />
-                </form>
-            </div>
-
-        {{end}}        
-
-        {{ with .Site.Params.offcanvas.followme }}
+        
+        {{end}} {{ with .Site.Params.offcanvas.tags }}
         <h6>{{ . }}</h6>
         {{ end }}
 
         <ul>
-        {{ range .Site.Params.offcanvas.socialnetworks }}
-            <li><a class="email" target="_blank" href="{{ .url }}">{{ .name }}</a></li>
-            <li>F0F0 F0F0 F0F0 F0F0 F0F0 </li>
-            <li>F0F0 F0F0 F0F0 F0F0 F0F0</li>
-            <li><a target="_blank" href="{{ .Site.BaseURL }}misc/yourPGPkey.txt"><img class="key_img" src="{{ .Site.BaseURL }}img/key.png"></a></li>
-        {{ end }}
-        </ul>     
+            {{ range $name, $taxonomy := .Site.Taxonomies.tags }} {{ if gt (len $taxonomy.Pages) 2 }}
+            <a href="{{ " /tags/ " | relLangURL }}{{ $name | urlize }}" title="{{ $name }}">
+                {{ $name }}
+            </a>
+            {{ end }} {{ end }}
+        </ul>
+
 
         {{ with .Site.Params.offcanvas.subscribe }}
         <h6>{{ . }}</h6>
         {{ end }}
-
         <ul>
-            <li><a class="rss" target="_blank" href="{{ .Site.BaseURL }}index.xml">RSS feed</a></li>
-        </ul>   
+            {{ range .Site.Params.offcanvas.socialnetworks }}
+            <li>
+                <a class="email" target="_blank" href="{{ .url }}">{{ .name }}</a>
+            </li>
+            {{ end }}
+        </ul>
+        <ul>
+            <li>
+                <a class="rss" target="_blank" href="{{ .Site.BaseURL }}index.xml">RSS</a>
+            </li>
+        </ul>
     </nav>
 </div>

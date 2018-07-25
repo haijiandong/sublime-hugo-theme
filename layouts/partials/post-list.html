@@ -2,7 +2,8 @@
     <div id="home">
         <ul class="posts">
         {{ $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") }}
-        {{ range $paginator.Pages }}
+        <!-- <h1>{{$paginator.Pages}}</h1> -->
+        {{ range .Data.Pages }}
             <li itemscope itemtype="//schema.org/BlogPosting">
                 <a href="{{ .Permalink }}" itemprop="url">
                     <div class="p-wrap">
