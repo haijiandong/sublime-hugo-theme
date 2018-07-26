@@ -1,6 +1,6 @@
 <div class="off-canvas">
     <figure class="avatar">
-        <img src="{{ .Site.BaseURL }}img/Gender Neutral User-80.svg" title="{{ with .Site.Params.name }}{{ . }}{{ end }}">
+        <img src="{{ .Site.BaseURL }}img/user_log.jpg" title="{{ with .Site.Params.name }}{{ . }}{{ end }}">
     </figure>
     <div class="bio">
         {{ with .Site.Params.offcanvas.title }}
@@ -11,8 +11,9 @@
         <p class="bio2">{{ . | markdownify }}</p>
         {{ end }}
     </div>
+    <!--侧边栏bar-->
     <nav>
-
+        <!--搜索bar-->
         {{ if .Site.Params.offcanvas.search_enabled }} {{ with .Site.Params.offcanvas.search }}
         <h6>{{ . }}</h6>
         {{ end }}
@@ -25,7 +26,7 @@
             </form>
         </div>
 
-
+        <!--分类bar-->
         {{end}} {{ with .Site.Params.offcanvas.categories }}
         <h6>{{ . }}</h6>
         {{ end }}
@@ -37,7 +38,7 @@
             </a> {{ end }} {{ end }}
         </ul>
 
-
+        <!--订阅bar-->
         {{ with .Site.Params.offcanvas.subscribe }}
         <h6>{{ . }}</h6>
         {{ end }}
