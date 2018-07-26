@@ -25,17 +25,16 @@
             </form>
         </div>
 
-        
-        {{end}} {{ with .Site.Params.offcanvas.tags }}
+
+        {{end}} {{ with .Site.Params.offcanvas.categories }}
         <h6>{{ . }}</h6>
         {{ end }}
 
         <ul>
-            {{ range $name, $taxonomy := .Site.Taxonomies.tags }} {{ if gt (len $taxonomy.Pages) 2 }}
+            {{ range $name, $taxonomy := .Site.Taxonomies.categories }} {{ if gt (len $taxonomy.Pages) 2 }}
             <a href="{{ " /tags/ " | relLangURL }}{{ $name | urlize }}" title="{{ $name }}">
-                {{ $name }}
-            </a>
-            {{ end }} {{ end }}
+                {{ $name }}{{len $taxonomy.Pages}}
+            </a> {{ end }} {{ end }}
         </ul>
 
 
