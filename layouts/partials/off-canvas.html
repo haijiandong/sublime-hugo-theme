@@ -33,7 +33,7 @@
 
         <ul>
             {{ range $name, $taxonomy := .Site.Taxonomies.categories }} {{ if gt (len $taxonomy.Pages) 2 }}
-            <a href="{{ " /tags/ " | relLangURL }}{{ $name | urlize }}" title="{{ $name }}">
+            <a href='{{ "categories/" | relLangURL }}{{ $name | urlize }}' title="{{ $name }}">
                 {{ $name }}({{len $taxonomy.Pages}})
             </a> {{ end }} {{ end }}
         </ul>
