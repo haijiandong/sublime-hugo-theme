@@ -5,11 +5,4 @@
 <script src="{{ .Site.BaseURL }}js/main.js"></script>
 {{ range .Site.Params.custom_js }}
 <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
-{{ end}}
-
-{{ template "_internal/google_analytics.html" . }}
-
-
-{{ "<!-- Syntax highlighting -->" | safeHTML }}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+{{ end}} {{ template "_internal/google_analytics.html" . }}
