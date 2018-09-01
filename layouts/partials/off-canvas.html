@@ -33,7 +33,7 @@
 
         <ul>
             {{ range $name, $taxonomy := .Site.Taxonomies.categories }} {{ if gt (len $taxonomy.Pages) 2 }}
-            <a href='{{ "categories/" | relLangURL }}{{ $name | urlize }}' title="{{ $name }}">
+            <a class="categories" href='{{ "categories/" | relLangURL }}{{ $name | urlize }}' title="{{ $name }}">
                 {{ $name }}({{len $taxonomy.Pages}})
             </a> {{ end }} {{ end }}
         </ul>
@@ -48,11 +48,7 @@
                 <a class="email" target="_blank" href="{{ .url }}">{{ .name }}</a>
             </li>
             {{ end }}
-        </ul>
-        <ul>
-            <li>
-                <a class="rss" target="_blank" href="{{ .Site.BaseURL }}index.xml">RSS</a>
-            </li>
+            <a class="rss" target="_blank" href="{{ .Site.BaseURL }}index.xml">RSS</a>
         </ul>
     </nav>
 </div>
