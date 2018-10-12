@@ -25,15 +25,27 @@
                 <input class="search-submit" type="submit" name="sa" value="Search" />
             </form>
         </div>
-
+        {{end}}
         <!--分类bar-->
-        {{end}} {{ with .Site.Params.offcanvas.categories }}
+        {{ with .Site.Params.offcanvas.categories }}
         <h6>{{ . }}</h6>
         {{ end }}
 
         <ul>
             {{ range $name, $taxonomy := .Site.Taxonomies.categories }} {{ if gt (len $taxonomy.Pages) 2 }}
             <a class="categories" href='{{ "categories/" | relLangURL }}{{ $name | urlize }}' title="{{ $name }}">
+                {{ $name }}({{len $taxonomy.Pages}})
+            </a> {{ end }} {{ end }}
+        </ul>
+
+        <!--标签bar-->
+        {{ with .Site.Params.offcanvas.tags }}
+        <h6>{{ . }}</h6>
+        {{ end }}
+
+        <ul>
+            {{ range $name, $taxonomy := .Site.Taxonomies.tags }} {{ if gt (len $taxonomy.Pages) 2 }}
+            <a class="categories" href='{{ "tags/" | relLangURL }}{{ $name | urlize }}' title="{{ $name }}">
                 {{ $name }}({{len $taxonomy.Pages}})
             </a> {{ end }} {{ end }}
         </ul>
@@ -49,6 +61,14 @@
             </li>
             {{ end }}
             <a class="rss" target="_blank" href="{{ .Site.BaseURL }}index.xml">RSS</a>
+        </ul>
+
+        <!--Other-->
+        <h6>OTHER</h6>
+        <ul>
+            <li>
+                <p>There are {{len .Data.Pages}} articles in total.</p>
+            </li>
         </ul>
     </nav>
 </div>
