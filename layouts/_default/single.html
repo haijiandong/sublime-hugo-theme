@@ -22,6 +22,20 @@
                     </h5>
                 </div>
                 <h1 class="page-title" itemprop="name headline">{{ .Title }}</h1>
+                <br>
+                <!--默认的图片-->
+                <div>
+                    {{if .Params.photos}}
+                    <img src="{{.Params.photos}}">
+                    {{else}}
+                    <img src="http://lorempixel.com/1000/500/technics/">
+                    {{end}}
+                </div>
+                <!--目录-->
+                <div>
+                    {{.TableOfContents}}
+                </div>
+                <hr>
                 <div itemprop="articleBody">
                     {{ .Content }}
                 </div>
